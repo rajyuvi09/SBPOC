@@ -48,6 +48,7 @@ public class PlantsController {
 	
 	//Ability to display top N and Bottom n plants in either ASC or DSC order by total generation output
 	//http://localhost:8080/dubaiplants/getplants?id=desc
+	//http://localhost:8080/dubaiplants/getplants?id=asc
 	
 	@GetMapping("getplants")
 	public ResponseEntity<List<Plants>> getPlants(@RequestParam(required = false) String id) { 
@@ -79,6 +80,16 @@ public class PlantsController {
 		//List<Plants> plants = new ArrayList<Plants>();
 		//repo.findPlantsBylocation(location).forEach(plants::add);
 		//return new ResponseEntity<>(plants, HttpStatus.OK);
+	}
+	
+
+	// Get plant details
+	//http://localhost:8080/dubaiplants/getplantdetails?plantname=Ambler
+	@GetMapping("getplantdetails")
+	public ResponseEntity<List<Plants>> getAllPlants(@RequestParam(required = false) String plantname) {
+		List<Plants> plants = new ArrayList<Plants>();
+		 repo.findPlantDetails(plantname).forEach(plants::add);
+		return new ResponseEntity<>(plants, HttpStatus.OK);
 	}
 
 }

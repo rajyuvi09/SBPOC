@@ -22,6 +22,9 @@ public interface PlantsRepository extends JpaRepository<Plants, Long> {
 		@Query(value = "SELECT * FROM PLANTDET WHERE PLANT = :location ORDER BY ?#{#paging}", nativeQuery = true)
 		List<Plants> findPlantsBylocation(Pageable paging, @Param("location") String location);
 		
+		@Query(value = "SELECT * FROM PLANTDET WHERE PLANTNAME = :plantname", nativeQuery = true)
+		List<Plants> findPlantDetails(String plantname);
+		
 		
 		
 		
