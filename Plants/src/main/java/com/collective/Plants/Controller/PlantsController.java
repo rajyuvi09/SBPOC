@@ -59,7 +59,7 @@ public class PlantsController {
 		return new ResponseEntity<>(plants, HttpStatus.OK);
 	}
 
-	// get plants by location
+	// get plants by location with pagination
 	// http://localhost:8080/dubaiplants/getplantsByLocation?location=AK
 	// http://localhost:8080/dubaiplants/getplantsByLocation?location=AK&limit=2
 
@@ -74,7 +74,7 @@ public class PlantsController {
 
 	}
 
-	// Get plant details
+	// Get plant details of a single powerplant
 	// http://localhost:8080/dubaiplants/getplantdetails?plantname=Ambler
 	@GetMapping("getplantdetails")
 	public ResponseEntity<List<Plants>> getAllPlants(@RequestParam(required = false) String plantname) {
@@ -82,5 +82,9 @@ public class PlantsController {
 		repo.findPlantDetails(plantname).forEach(plants::add);
 		return new ResponseEntity<>(plants, HttpStatus.OK);
 	}
+	
+	
+	
+	// Requirement unclear about Actual and percentage values of plants...
 
 }
